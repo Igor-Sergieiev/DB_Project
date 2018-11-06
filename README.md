@@ -7,7 +7,7 @@ It's devided on subsystems:
 - Base (vendor)
     This partition controls all low level proc. as soon as the client-server logic. Response for providing controlled access and general messaging of entire system. 
 
-- DataBase Gemofort // CRITICAL //
+- DataBase (vendor) // CRITICAL //
     Response for storing in appropriate way, processing and managin information, involves database topology, search-manage logic and database API.
 
 - GUI (vendor)
