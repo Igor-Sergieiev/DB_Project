@@ -76,11 +76,13 @@ VUUID -u.> CM : <include>
 '------------------------------------------------------------------
 (Manage\nEquipment) as ME
 (Give\nEquipment) as GE
+(Return\nEquipment) as RetE
 (Check Equipment\nstatus) as CES
 (Add new\nEquipment) as AE
 (Remove old\nEquipment) as RE
 
 GE -u.> ME : <extend>
+RetE -l.> GE : <extend> 
 CES -u.> ME : <extend>
 AE -u.> CES : if(nec)\n  <include>
 RE -u.> CES : if(nec)\n  <include>
@@ -113,9 +115,9 @@ SF -u-|> SE
 
 Lct -u-|> St
 Lgs -u-|> St
-TH -u-|> Lgs
+TH -l-|> Lgs
 Sup -u-|> Ad
-Rt -u-|> Ad
+Rt -l-|> Ad
 Ad -u-|> Lgs
 Seq -u-|> Lgs
 '------------------------------------------------------------------
@@ -127,12 +129,14 @@ Seq -u-|> Lgs
 St -> ShS
 
 Lct -> ULF
-Lct -> AL
+Lct -> СL
 Rt -> SS
 Ad -> SP
 
 Sup -> MS
 Sup -> MP
+Sup -u-> AE
+Sup -l-> RE
 
 TH -> ME
 
