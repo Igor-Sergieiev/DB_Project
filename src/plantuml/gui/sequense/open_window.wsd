@@ -1,0 +1,11 @@
+@startuml
+actor User
+participant ShowWindow
+participant Handler
+
+User -> ShowWindow: Open Window
+ShowWindow -> Handler: GetGUI
+Handler --> ShowWindow: Return GUI spec
+ShowWindow --> User: Window Shown4
+
+@enduml

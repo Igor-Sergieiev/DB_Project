@@ -1,13 +1,28 @@
 @startuml
-
 actor User
 
-User -> ShowWindow : Open Window
+ref over ShowWindow, Handler: GUI::OpenWindow()
 activate ShowWindow
-ShowWindow -> Handler : Get GUI
+activate ShowWindow #aaff00
+
 activate Handler
-Handler .> ShowWindow : Return GUI spec
-ShowWindow .> User : Window Shown
+activate Handler #aaff00
 
 
+User -> ShowWindow : Enter auditory number
+
+ShowWindow -> Handler : Number entered\nsend number
+ref over Handler : Base::GetSchedule();
+alt invalid number
+Handler --> ShowWindow : Return fail
+destroy Handler
+ShowWindow --> User : Show Dialog :\nNo such auditory
+destroy ShowWindow
+end
+Handler -> Handler : Reformat\nschedule
+Handler --> ShowWindow : Return formatted\nschedule
+destroy Handler
+ShowWindow -> ShowWindow : Show Data
+ShowWindow --> User : Schedule shown
+destroy ShowWindow
 @enduml
