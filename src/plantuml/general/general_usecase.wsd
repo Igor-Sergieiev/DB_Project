@@ -1,0 +1,144 @@
+@startuml
+
+'------------------------------------------------------------------
+'   Schedule
+'------------------------------------------------------------------
+(Supervise\nSchedule) as SS
+(Show\nSchedule) as ShS
+(Manage\nSchedule) as MS
+(Change\nSchedule) as CS
+(Add\nSchedule) as AdS
+(Remove\nSchedule) as RS
+(Change\nAuditory) as CA
+(Add\nAuditory) as  AA
+(Remove\nAuditory) as  RA
+(Change\nLecturer) as CL 
+(Add\nLcturer) as AL
+(Remove\nLecturer) as RL
+
+ShS -u.> SS : <extend>
+MS -u.> SS : <extend>
+CS -u-|> MS 
+AA -u.> CA : if(nec)\n  <extend>
+RA -u.> CA : if(nec)\n  <extend>
+AdS -u-|> MS 
+RS -u-|> MS 
+CA -u.> CS : if(nec)\n  <include>
+CL -u.> CS : if(nec)\n  <include>
+AL -u.> CL : if(nec)\n  <extend>
+RL -u.> CL : if(nec)\n  <extend>
+
+'------------------------------------------------------------------
+
+
+
+'------------------------------------------------------------------
+'   Permition
+'------------------------------------------------------------------
+(Supervise\npermitions) as SP
+(Add temporary\npermitions) as ATP
+(Manage\nPermitions) as MP
+(Add\n Permition) as AP
+(Remove\n Permition) as RP
+(Add daily\npermition) as ADP
+(Add month\npermition) as AMP
+(Add year\npermition) as AYP
+
+MP -u.> SP : <extend>
+AP -u.> MP : if(nec)\n  <include>
+RP -u.> MP : if(nec)\n  <include>
+ATP -l.> SP : <extend>
+ADP -u-|> ATP
+AMP -u-|> ATP
+AYP -u-|> ATP
+'------------------------------------------------------------------
+
+
+'------------------------------------------------------------------
+'   Use LF
+'------------------------------------------------------------------
+(Use LF) as ULF
+(Open\nmaglock) as OM
+(Lecture) as L
+(Close\nmaglock) as CM
+(Verify UUID) as VUUID
+
+OM -u.> ULF : <extend> 
+CM -u.> ULF : <extend>
+L -u.> ULF : <extend>
+VUUID -u.> OM : <include> 
+VUUID -u.> CM : <include> 
+'------------------------------------------------------------------
+
+
+'------------------------------------------------------------------
+'   Manage Equipment
+'------------------------------------------------------------------
+(Manage\nEquipment) as ME
+(Give\nEquipment) as GE
+(Check Equipment\nstatus) as CES
+(Add new\nEquipment) as AE
+(Remove old\nEquipment) as RE
+
+GE -u.> ME : <extend>
+CES -u.> ME : <extend>
+AE -u.> CES : if(nec)\n  <include>
+RE -u.> CES : if(nec)\n  <include>
+'------------------------------------------------------------------
+
+GE -d.> L : if(nec)\n  <include>
+
+'------------------------------------------------------------------
+'   Sequrity
+'------------------------------------------------------------------
+(Signal\nEmergency) as SE
+(Signal inautirised\nopen maglock) as SIOM
+(Signal fire) as SF
+
+SIOM -u-|> SE
+SF -u-|> SE
+'------------------------------------------------------------------
+
+'------------------------------------------------------------------
+'   Actors
+'------------------------------------------------------------------
+:Student: as St
+:Lecturer: as Lct
+:Supervisor: as Sup
+:Root: as Rt
+:Sequrity: as Seq
+:Admin: as Ad
+:Logistics: as Lgs
+:Technical\nsupport: as TH
+
+Lct -u-|> St
+Lgs -u-|> St
+TH -u-|> Lgs
+Sup -u-|> Ad
+Rt -u-|> Ad
+Ad -u-|> Lgs
+Seq -u-|> Lgs
+'------------------------------------------------------------------
+
+
+'------------------------------------------------------------------
+'   Use case lincks
+'------------------------------------------------------------------
+St -> ShS
+
+Lct -> ULF
+Lct -> AL
+Rt -> SS
+Ad -> SP
+
+Sup -> MS
+Sup -> MP
+
+TH -> ME
+
+Seq --> SE
+
+Lgs -> ATP
+'------------------------------------------------------------------
+
+@enduml
