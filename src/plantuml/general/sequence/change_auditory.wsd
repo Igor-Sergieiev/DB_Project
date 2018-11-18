@@ -1,0 +1,10 @@
+@startuml Change_Auditory
+
+actor Supervisor
+actor Root
+
+Supervisor -> Root : Change auditory\nrequest
+ref over Root : GUI: "Change auditory"\nuse case
+Root --> Supervisor : Report success
+
+@enduml

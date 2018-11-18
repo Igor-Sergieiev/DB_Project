@@ -1,0 +1,10 @@
+@startuml Remove_Schedule
+
+actor Supevisor
+actor Root
+
+Supevisor -> Root : Remove schedule\nrequest
+ref over Root : GUI: "Remove schedule"\nuse case
+Root --> Supevisor : Report success
+
+@enduml

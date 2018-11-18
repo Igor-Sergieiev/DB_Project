@@ -1,0 +1,13 @@
+@startuml Remove_Lecturer
+
+actor Lecturer
+actor Supervisor
+actor Root
+
+Supervisor -> Root : Remove lecturer request\nSend UUID
+ref over Root : GUI: "Remove lecturer" usecase
+Root --> Supervisor : Report success
+Supervisor -> Lecturer : Return card
+Lecturer --> Supervisor : Card returned
+
+@enduml

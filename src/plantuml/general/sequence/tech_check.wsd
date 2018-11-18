@@ -1,0 +1,6 @@
+@startuml Tech_Check
+
+actor TH
+ref over TH : GUI: "Tech check"\nuse case
+
+@enduml

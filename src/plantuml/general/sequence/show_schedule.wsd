@@ -1,0 +1,15 @@
+@startuml ShowSchedule
+
+actor Student
+
+Student -> System : Show GUI
+activate System
+System --> Student : GUI Shown
+
+ref over Student : Enter lecture\nnumber
+
+Student -> System : Press Show 
+System --> Student : Schedule shown
+destroy System
+
+@enduml

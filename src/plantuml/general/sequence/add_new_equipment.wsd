@@ -1,0 +1,11 @@
+@startuml Add_New_Equipment
+
+actor Supervisor
+actor TH
+
+ref over Supervisor : Tech. report check
+Supervisor -> TH : Send new equip.
+ref over TH : GUI: "Add equipment"\nuse case
+TH --> Supervisor : Report success
+
+@enduml

@@ -1,0 +1,11 @@
+@startuml Signal_Emergency
+
+actor Sequrity
+
+activate System
+ref over System : Sensors triggered
+System -> Sequrity : Make call async
+ref over System : Signalise Admin.
+
+
+@enduml

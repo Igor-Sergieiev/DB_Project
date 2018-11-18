@@ -1,0 +1,28 @@
+@startuml Use_LF
+
+actor Lecturer
+
+Lecturer -> System : Put card\nover sensor
+activate System 
+activate System #aaff00
+activate System #ffaa00
+alt denied
+System --> Lecturer : Show denied\nmessage
+destroy System
+end
+System --> Lecturer : Show gruanted\nmessage
+ref over Lecturer : Lecture
+alt neccessary
+ref over Lecturer : usecase : \n"Get equipment"
+end
+Lecturer -> System : Put card\nover sensor
+alt denied
+System --> Lecturer : Show denied\nmessage
+destroy System
+end
+System --> Lecturer : Show gruanted\nmessage
+destroy System
+alt equipment
+ref over Lecturer : usecase :\n"Return equipment"
+end
+@enduml

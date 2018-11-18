@@ -1,0 +1,17 @@
+@startuml Get_Temporary_Access
+
+actor Logistics
+actor Supervisor
+actor Root
+
+Logistics -> Supervisor : Get temp\naccess 
+ref over Supervisor : Check request
+alt denied
+Supervisor --> Logistics : Report denied
+end
+Supervisor -> Root : Give temp access\nSend UUID
+ref over Root : GUI: "Add temporary\naccess" use case
+Root --> Supervisor : Report success
+Supervisor --> Logistics : Report success\nGive card 
+
+@enduml

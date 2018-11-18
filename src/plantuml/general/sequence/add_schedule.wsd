@@ -1,0 +1,13 @@
+@startuml Add_Schedule
+
+actor Supervisor
+actor Root
+
+Supervisor -> Root : Give new schedule
+alt schedule exists
+ref over Root : GUI: "Remove schedule"\nuse case 
+end
+ref over Root : GUI: "Add schedule"\nuse case 
+Root --> Supervisor : Report success
+
+@enduml

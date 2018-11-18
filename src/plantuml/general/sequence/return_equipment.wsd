@@ -1,0 +1,11 @@
+@startuml Return_Equipment
+
+actor Lecturer
+actor TH
+
+Lecturer -> TH : Give equip. list\nGive card
+ref over TH : Check equip. status 
+ref over TH : GUI: "Return equipment"\nuse case
+TH --> Lecturer : Return card
+
+@enduml

@@ -1,0 +1,14 @@
+@startuml Add_LEcturer
+
+actor Lecturer
+actor Supervisor
+actor Root
+
+Lecturer -> Supervisor : Get permition request
+ref over Supervisor : Check request
+Supervisor -> Root : Give permition request\nSend lecturers personal\ndata
+ref over Root : GUI: "Add lecturer"\nuse case
+Root --> Supervisor : report success
+Supervisor --> Lecturer : Report succss\nGive personal card
+
+@enduml

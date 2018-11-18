@@ -1,0 +1,11 @@
+@startuml Remove_Equipment
+
+actor Supervisor
+actor TH
+
+ref over Supervisor : Tech. report check
+Supervisor -> TH : Send equip. to remove list
+ref over TH : GUI: "Remove equipment"\nuse case
+TH --> Supervisor : Report success
+
+@enduml
