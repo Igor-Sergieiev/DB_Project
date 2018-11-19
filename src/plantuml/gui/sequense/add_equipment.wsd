@@ -1,0 +1,27 @@
+@startuml
+actor User
+
+
+ref over ShowWindow, Handler: GUI::OpenWindow()
+activate ShowWindow
+activate ShowWindow #aaff00
+
+activate Handler
+activate Handler #aaff00
+
+User -> ShowWindow : Enter equipment list
+
+ref over Handler : Base::AddEquipment();
+alt invalid data
+Handler --> ShowWindow : Return fail
+destroy Handler
+ShowWindow --> User : Show Dialog :\nInvalid equipment format
+destroy ShowWindow
+end
+
+Handler --> ShowWindow : Return success\nmessage
+destroy Handler
+ShowWindow -> ShowWindow : Show Data
+ShowWindow --> User : Success message shown
+destroy ShowWindow
+@enduml
