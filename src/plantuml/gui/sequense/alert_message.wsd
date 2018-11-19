@@ -1,0 +1,22 @@
+@startuml
+actor User
+
+
+ref over ShowWindow, Handler: GUI::OpenWindow()
+
+activate ShowWindow #aaff00
+
+activate Handler #aaff00
+
+
+User -> ShowWindow : Press Alert button
+ShowWindow -> Handler: Send signal
+ref over Handler : Base::SendAlert();
+
+
+Handler --> ShowWindow : Return success\nmessage
+destroy Handler
+ShowWindow -> ShowWindow : Show Data
+ShowWindow --> User : Success message shown
+destroy ShowWindow
+@enduml

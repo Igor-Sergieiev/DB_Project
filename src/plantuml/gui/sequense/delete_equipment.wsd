@@ -10,7 +10,7 @@ activate Handler
 activate Handler #aaff00
 
 User -> ShowWindow : Enter equipment list
-
+ShowWindow -> Handler: Data entered\nsend data
 ref over Handler : Base::DelEquipment();
 alt invalid data
 Handler --> ShowWindow : Return fail
