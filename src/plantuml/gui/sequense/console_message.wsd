@@ -1,0 +1,29 @@
+@startuml
+actor Sender
+participant Console
+participant Handler
+
+activate Console
+activate Console#aaff00
+
+activate Handler
+activate Handler #aaff00
+
+
+ref over Sender, Console: Base::GetData()
+Console -> Handler: Send data
+ref over Handler : PAA::Validate();
+alt data is valide:
+    Handler --> Console: Return success\nsignal
+    destroy Handler
+    Console -> Console: Show "access allowed"
+    Console --> Sender : Success message shown
+    destroy Console
+else data isn't valide:
+    Handler --> Console: Return failure\nsignal
+    destroy Handler
+    Console -> Console: Show "access denied"
+    Console --> Sender : Failure message shown
+    destroy Console
+end
+@enduml
